@@ -33,7 +33,7 @@ function AddTeacherForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5005/admin/add-teacher", {
+    fetch("https://backend.gonakli.com/admin/add-teacher", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

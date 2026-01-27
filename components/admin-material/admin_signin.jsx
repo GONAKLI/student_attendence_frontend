@@ -24,7 +24,7 @@ function Signin_admin() {
     }
 
     try {
-      const res = await fetch("http://localhost:5005/admin_signin", {
+      const res = await fetch("https://backend.gonakli.com/admin_signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

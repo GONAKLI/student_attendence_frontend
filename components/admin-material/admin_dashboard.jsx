@@ -7,7 +7,7 @@ function AdminDashboard() {
 
   useEffect(() => {
     async function checkAuth() {
-      const res = await fetch("http://localhost:5005/admin/dashboard", {
+      const res = await fetch("https://backend.gonakli.com/admin/dashboard", {
         credentials: "include",
       });
       if (res.status === 401) {
@@ -19,7 +19,7 @@ function AdminDashboard() {
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("http://localhost:5005/admin/logout", {
+      const res = await fetch("https://backend.gonakli.com/admin/logout", {
         method: "POST",
         credentials: "include",
       });

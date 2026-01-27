@@ -1,0 +1,62 @@
+.selection-container {
+  padding: 50px 20px;
+  text-align: center;
+  background: #f4f6f9;
+  min-height: 100vh;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.selection-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.selection-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  text-decoration: none;
+  color: #2c3e50;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease;
+}
+
+.selection-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+
+.selection-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.selection-card:hover .selection-image {
+  transform: rotate(-5deg) scale(1.1);
+}
+
+.selection-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }

@@ -1,0 +1,95 @@
+/* header-part css */
+
+.header_cover{
+    display: flex;
+    flex-wrap: wrap;
+    text-transform: capitalize;
+    justify-content: center;
+}
+
+.header_title{
+        margin-top: -2px;
+    margin-left: 10px;
+    font-size: 25px;
+    color: red;
+    text-transform: uppercase;
+}
+.react_icon_sticker{
+    font-size: 25px;
+}
+.header_para_line{
+   text-align: center;
+   text-transform: capitalize;
+}
+
+/* selection part css */
+
+.selection_images{
+    height: 80px;
+    margin: 30px;
+}
+.selection_outer_div{
+    color: green;
+    border: 1px dashed red ;
+    margin: 7px;
+}
+.para{
+    flex-direction: column;
+}
+.cover{
+    display: flex;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 25px;;
+}
+
+/* admin signup form */
+.form_div_cover{
+    text-align: center;
+    background-color: green;
+    text-transform: capitalize;
+}
+.form_group label{
+    margin-left:35px;
+     font-size: 20px;
+     
+}
+.form_group input{
+    
+    margin-left:35px;
+  height: 25px;
+  font-size: large;
+  margin-bottom: 45px;
+  color: brown;
+  text-transform: capitalize;
+  text-decoration: dotted;
+}
+.form_group{
+    margin:30px;
+    font-size: 25px;
+}
+.form_submit_button{
+    background-color: brown;
+    font-size: 25px;
+}
+.form_caption{
+    font-size: 25px;
+}
+.admin_form{
+    text-align: center;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+.admin_form :active{
+    color: red;
+}
+.admin_signin{
+    justify-content: left;
+    justify-self: left;
+    width: 50%;
+}
+.admin_signup{
+    justify-content: right;
+    justify-self: right;
+    width: 50%
+}

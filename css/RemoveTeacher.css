@@ -1,0 +1,100 @@
+.teacher-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.teacher-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.teacher-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative; /* 👈 important for delete button positioning */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teacher-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.teacher-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.teacher-info {
+  padding: 15px;
+}
+
+.teacher-info h3 {
+  margin: 0 0 10px;
+  color: #34495e;
+}
+
+.teacher-info p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.added-by {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+}
+
+/* Delete button (baldi) */
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2.5rem;   /* 👈 बड़ी बाल्टी */
+  color: #e74c3c;      /* 👈 लाल रंग */
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+  color: #c0392b; /* hover पर गहरा लाल */
+}
+
+/* Animation for delete (Telegram style fade + slide) */
+.fade-out {
+  animation: fadeSlideOut 0.6s forwards;
+}
+
+@keyframes fadeSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}

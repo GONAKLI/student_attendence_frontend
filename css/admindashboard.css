@@ -1,0 +1,76 @@
+/* Container */
+.admin-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title */
+.admin-title {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+}
+
+/* Grid Layout */
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Cards (Buttons) */
+.admin-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+  background: #f0f0f0;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.25);
+}
+
+/* Danger Buttons */
+.admin-card.danger {
+  background: #ff4d4d;
+  color: #fff;
+}
+
+.admin-card.danger:hover {
+  background: #e60000;
+}
+
+.logout-btn-fixed {
+  position: fixed;   /* 👈 fixed position */
+  top: 20px;         /* 👈 screen ke top se distance */
+  right: 20px;       /* 👈 screen ke right side se distance */
+  background-color: #e74c3c;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;     /* 👈 ensure button sabse upar rahe */
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.logout-btn-fixed:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}

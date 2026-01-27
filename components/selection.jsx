@@ -5,7 +5,7 @@ function Selection() {
   const student_img =
     "https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Student-3-1024.png";
   const teacher_img =
-    "https://icons.iconarchive.com/icons/google/noto-emoji-people-profession/256/10224-woman-teacher-icon.png";
+    "https://tse3.mm.bing.net/th/id/OIP.VQO3GusvipKi_6rnCRUrcwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3";
   const admin_img =
     "https://static.vecteezy.com/system/resources/previews/015/145/649/original/man-with-the-inscription-admin-icon-color-outline-vector.jpg";
 

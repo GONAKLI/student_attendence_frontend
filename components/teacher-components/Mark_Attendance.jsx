@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 // Import statement waisa hi rahega, bas 'styles' variable use karenge
 import styles from "../../css/teacher Css/MarkAttendance.module.css";
+import { useEffect } from "react";
 
 export default function MarkAttendance() {
   const navigate = useNavigate();
@@ -12,6 +13,29 @@ export default function MarkAttendance() {
   const cardRef = useRef(null);
   const startXRef = useRef(0);
   const currentXRef = useRef(0);
+
+ const [studentData, setStudentData] = useState([]);
+
+   useEffect(() => {
+      const fetchStudentData = async () => {
+        try {
+          const res = await fetch("https://backend.gonakli.com/teacher/getStudents", {
+            credentials: "include",
+          });
+  
+          if (!res.ok) {
+            throw new Error("Failed to fetch students");
+          }
+  
+          const data = await res.json();
+          setStudentData(data);
+        } catch (err) {
+          console.error("Error fetching students:", err);
+        }
+      };
+  
+      fetchStudentData();
+    }, []);
 
   // Demo Students Data
   const students = [
@@ -183,7 +207,7 @@ export default function MarkAttendance() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5005/mark-attendance", {
+      const response = await fetch("https://backend.gonakli.com/mark-attendance", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -233,7 +257,7 @@ export default function MarkAttendance() {
         </div>
         <div className={styles["progress-indicator"]}>
           <span>
-            {attendanceRecords.length}/{students.length}
+            {attendanceRecords.length}/{studentData.length}
           </span>
         </div>
       </header>

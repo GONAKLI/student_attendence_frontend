@@ -5,6 +5,7 @@ import { RiLockPasswordFill, RiAdminFill } from "react-icons/ri";
 import { GiConfirmed } from "react-icons/gi";
 import { GoFileSubmodule } from "react-icons/go";
 import "../../css/adminsignup.css";
+import LoadingSpinner from "../Spinner/LoadingSpinner"; // ✅ import spinner
 
 function Signup_admin({ setType }) {
   const [formData, setFormData] = useState({
@@ -13,23 +14,26 @@ function Signup_admin({ setType }) {
     mobile: "",
     password: "",
     confirm_password: "",
-    gender: "", // ✅ new field
+    gender: "",
   });
   const [response, setResponse] = useState(null);
+  const [Loading, setLoading] = useState(false);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true); // ✅ start spinner
 
     if (formData.password !== formData.confirm_password) {
       setResponse({ reason: "Passwords do not match" });
+      setLoading(false);
       return;
     }
 
     try {
-      const res = await fetch("http://localhost:5005/admin_signup", {
+      const res = await fetch("https://backend.gonakli.com/admin_signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -37,7 +41,6 @@ function Signup_admin({ setType }) {
       });
       const data = await res.json();
       console.log(data);
-      
 
       if (res.status === 200) {
         setResponse({ reason: "Signup successful! Please sign in." });
@@ -49,10 +52,18 @@ function Signup_admin({ setType }) {
       console.error("Error signing up:", err);
       setResponse({ reason: "Server error. Try again later." });
     }
+    setLoading(false); // ✅ stop spinner
   }
 
   return (
     <div className="signup-container">
+      {/* ✅ Overlay spinner */}
+      {Loading && (
+        <div className="overlay">
+          <LoadingSpinner />
+        </div>
+      )}
+
       <p className="signup-caption">
         <RiAdminFill /> Admin Signup
       </p>
@@ -172,8 +183,8 @@ function Signup_admin({ setType }) {
           />
         </div>
 
-        <button className="signup-button">
-          <GoFileSubmodule /> Submit
+        <button type="submit" className="signup-button" disabled={Loading}>
+          <GoFileSubmodule /> {Loading ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>

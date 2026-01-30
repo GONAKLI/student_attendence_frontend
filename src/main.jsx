@@ -16,6 +16,11 @@ import RemoveTeacher from "../components/admin-material/remove_teacher.jsx";
 import TeacherSignIn from "../components/teacher-components/teacher-signin.jsx";
 import TeacherDashboard from "../components/teacher-components/teacher_dashboard.jsx";
 import MarkAttendance from "../components/teacher-components/Mark_Attendance.jsx";
+import AddStudent from "../components/teacher-components/AddNewStudent.jsx";
+import TeacherProtectedRoute from "../components/teacher-components/TeacherProtectedRoute.jsx";
+import ViewStudents from "../components/admin-material/View_Students.jsx";
+import ViewSingleStudentDetail from "../components/admin-material/View_Single_Student_Data.jsx";
+import RemoveStudent from "../components/admin-material/Remove_Student.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,17 +49,44 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/admin/dashboard/Remove-Student",
+    element: <RemoveStudent />,
+  },
+  {
+    path: "/admin/dashboard/view-students",
+    element: <ViewStudents />,
+  },
+  {
+    path: "/admin/dashboard/view-student/:id",
+    element: <ViewSingleStudentDetail />,
+  },
+  {
     path: "/teacher",
     element: <TeacherSignIn />,
   },
-  ,
   {
     path: "/teacher/dashboard",
-    element: <TeacherDashboard />,
+    element: (
+      <TeacherProtectedRoute>
+        <TeacherDashboard />
+      </TeacherProtectedRoute>
+    ),
   },
   {
     path: "/teacher/dashboard/mark-attendance",
-    element: <MarkAttendance />,
+    element: (
+      <TeacherProtectedRoute>
+        <MarkAttendance />
+      </TeacherProtectedRoute>
+    ),
+  },
+  {
+    path: "/teacher/dashboard/add-student",
+    element: (
+      <TeacherProtectedRoute>
+        <AddStudent />
+      </TeacherProtectedRoute>
+    ),
   },
 ]);
 

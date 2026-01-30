@@ -4,11 +4,13 @@ import { MdEmail } from "react-icons/md";
 import { RiAdminFill, RiLockPasswordFill } from "react-icons/ri";
 import "../../css/adminsignin.css";
 import { Navigate, redirect, useNavigate } from "react-router-dom";
+import LoadingSpinner from "../Spinner/LoadingSpinner";
 
 function Signin_admin() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [response, setResponse] = useState(null);
+  const [Loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,15 +18,17 @@ function Signin_admin() {
 
   async function handleLogin(e) {
     e.preventDefault();
+    setLoading(true);
     const { email, password } = formData;
 
     if (!email || !password) {
       setResponse({ reason: "Please fill in both fields" });
+      setLoading(false);
       return;
     }
 
     try {
-      const res = await fetch("http://localhost:5005/admin_signin", {
+      const res = await fetch("https://backend.gonakli.com/admin_signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -32,16 +36,20 @@ function Signin_admin() {
       });
       let status = await res.json();
       setResponse(status);
-      if (status.reason === "user found") { return navigate("/admin/dashboard"); }
+      if (status.reason === "user found") {
+        navigate("/admin/dashboard");
+        return;
+      }
     } catch (err) {
       console.error("Error logging in:", err);
       setResponse({ reason: "Server error. Try again later." });
     }
-
+    setLoading(false);
   }
 
+
   return (
-    <div className="signin-container">
+    <div className="signin-container ">
       <p className="signin-caption">
         <RiAdminFill /> Admin Signin
       </p>
@@ -77,9 +85,10 @@ function Signin_admin() {
             required
           />
         </div>
+        {Loading && <LoadingSpinner />}
 
-        <button className="signin-button">
-          <GoFileSubmodule /> Submit
+        <button className="signin-button" disabled={Loading}>
+          <GoFileSubmodule /> {Loading ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>

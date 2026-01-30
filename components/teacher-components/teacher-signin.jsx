@@ -26,12 +26,13 @@ export default function TeacherSignIn() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5005/teacher-login", {
+      const response = await fetch("https://backend.gonakli.com/teacher-login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        credentials: 'include',
       });
 
       const data = await response.json();

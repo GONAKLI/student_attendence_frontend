@@ -1,16 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../css/teacher Css/TeacherDashboard.module.css";
 
 export default function TeacherDashboard() {
+  // Initialize as null to handle "loading" state
+  const [teacherData, setTeacherData] = useState(null);
+  const [studentData, setStudentData] = useState([]);
+ 
   const navigate = useNavigate();
-  const [teacherName] = useState("Dr. Sarah Johnson"); // You can get this from props or context
 
-  const handleLogout = () => {
-    // Clear any stored tokens/data
-    localStorage.removeItem("teacherToken");
-    // Navigate to home or login page
-    navigate("/");
+
+
+  // 2. Fetch Teacher Data
+  useEffect(() => {
+    const fetchTeacherData = async () => {
+      try {
+        const res = await fetch(
+          "https://backend.gonakli.com/teacher/TeacherDetails",
+          {
+            credentials: "include",
+          },
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch teacher details");
+        }
+
+        const data = await res.json();
+        setTeacherData(data);
+      } catch (err) {
+        console.error("Error fetching teacher details:", err);
+        // Optional: Navigate to login if fetch fails due to auth
+        // navigate("/");
+      }
+    };
+
+    fetchTeacherData();
+  }, [navigate]);
+
+  const handleLogout = async () => {
+    try {
+      let res = await fetch("https://backend.gonakli.com/teacher/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      if (res.status === 200) {
+        navigate("/");
+      } else {
+        alert("Unable To Logout");
+      }
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
   };
 
   const dashboardCards = [
@@ -48,7 +89,7 @@ export default function TeacherDashboard() {
         </svg>
       ),
       color: "green",
-      route: "/add-student",
+      route: "/teacher/dashboard/add-student",
     },
     {
       id: 3,
@@ -100,6 +141,15 @@ export default function TeacherDashboard() {
     navigate(route);
   };
 
+  // Prevent rendering if data is not loaded yet to avoid "Cannot read property of null" errors
+  if (!teacherData) {
+    return (
+      <div style={{ padding: "2rem", textAlign: "center" }}>
+        Loading Dashboard...
+      </div>
+    );
+  }
+
   return (
     <div className={styles["dashboard-container"]}>
       {/* Header */}
@@ -127,10 +177,23 @@ export default function TeacherDashboard() {
           <div className={styles["header-right"]}>
             <div className={styles["teacher-info"]}>
               <div className={styles["teacher-avatar"]}>
-                <span>{teacherName.charAt(0)}</span>
+                <span>
+                  {/* Added safety check in case profilePic is missing */}
+                  <img
+                    style={{ height: "51px", borderRadius: "50%" }}
+                    src={
+                      teacherData.profilePic
+                        ? `https://backend.gonakli.com/${teacherData.profilePic}`
+                        : "https://via.placeholder.com/51"
+                    }
+                    alt="Profile"
+                  />
+                </span>
               </div>
               <div className={styles["teacher-details"]}>
-                <span className={styles["teacher-name"]}>{teacherName}</span>
+                <span className={styles["teacher-name"]}>
+                  {teacherData.name}
+                </span>
                 <span className={styles["teacher-role"]}>Faculty Member</span>
               </div>
             </div>
@@ -156,7 +219,7 @@ export default function TeacherDashboard() {
       <main className={styles["dashboard-main"]}>
         <div className={styles["welcome-section"]}>
           <h2 className={styles["welcome-title"]}>
-            Welcome Back, {teacherName.split(" ")[1]}! 👋
+            Welcome Back, {teacherData.name}! 👋
           </h2>
           <p className={styles["welcome-subtitle"]}>
             Manage your students and classes efficiently
@@ -168,18 +231,12 @@ export default function TeacherDashboard() {
           {dashboardCards.map((card) => (
             <div
               key={card.id}
-              // Converting dynamic string: `dashboard-card card-${card.color}`
-              className={`${styles["dashboard-card"]} ${
-                styles[`card-${card.color}`]
-              }`}
+              className={`${styles["dashboard-card"]} ${styles[`card-${card.color}`]}`}
               onClick={() => handleCardClick(card.route)}
             >
               <div className={styles["card-icon-wrapper"]}>
                 <div
-                  // Converting dynamic string: `card-icon icon-${card.color}`
-                  className={`${styles["card-icon"]} ${
-                    styles[`icon-${card.color}`]
-                  }`}
+                  className={`${styles["card-icon"]} ${styles[`icon-${card.color}`]}`}
                 >
                   {card.icon}
                 </div>
@@ -205,7 +262,7 @@ export default function TeacherDashboard() {
           ))}
         </div>
 
-        {/* Quick Stats */}
+        {/* Quick Stats - Hardcoded for now, but you can replace '245' with studentData.length */}
         <div className={styles["stats-section"]}>
           <h3 className={styles["stats-title"]}>Quick Overview</h3>
           <div className={styles["stats-grid"]}>
@@ -222,10 +279,14 @@ export default function TeacherDashboard() {
                 </svg>
               </div>
               <div className={styles["stat-info"]}>
-                <span className={styles["stat-value"]}>245</span>
+                {/* Dynamically showing student count if available */}
+                <span className={styles["stat-value"]}>
+                  {studentData.length > 0 ? studentData.length : 245}
+                </span>
                 <span className={styles["stat-label"]}>Total Students</span>
               </div>
             </div>
+            {/* ... other stat cards ... */}
             <div className={styles["stat-card"]}>
               <div
                 className={`${styles["stat-icon"]} ${styles["stat-icon-green"]}`}

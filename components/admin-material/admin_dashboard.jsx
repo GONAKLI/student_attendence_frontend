@@ -6,7 +6,7 @@ function AdminDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5005/admin/", {
+    fetch("https://backend.gonakli.com/admin/", {
       credentials: "include",
     }).then((res) => {
       if (res.status === 401) {
@@ -17,7 +17,7 @@ function AdminDashboard() {
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("http://localhost:5005/admin/logout", {
+      const res = await fetch("https://backend.gonakli.com/admin/logout", {
         method: "POST",
         credentials: "include",
       });
@@ -46,8 +46,12 @@ function AdminDashboard() {
         <Link to="/admin/dashboard/view-teacher">
           <button className="admin-card">👩‍🏫 View Teachers</button>
         </Link>
-        <button className="admin-card">🎓 View Students</button>
-        <button className="admin-card danger">❌ Remove Student</button>
+        <Link to="/admin/dashboard/view-students">
+          <button className="admin-card">🎓 View Students</button>
+        </Link>
+        <Link to="/admin/dashboard/Remove-Student">
+          <button className="admin-card danger">❌ Remove Student</button>
+        </Link>
         <Link to="/admin/dashboard/remove-teacher">
           <button className="admin-card danger">❌ Remove Teacher</button>
         </Link>

@@ -1,0 +1,577 @@
+/* Container */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.header {
+  background: white;
+  padding: 20px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid #667eea;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.backButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.backButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.headerTitle {
+  text-align: center;
+  flex: 1;
+}
+
+.headerTitle h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+
+.headerTitle p {
+  font-size: 14px;
+  color: #718096;
+}
+
+.headerActions {
+  display: flex;
+  gap: 12px;
+}
+
+.editButton,
+.printButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.editButton {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+.printButton {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+.editButton svg,
+.printButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.editButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(72, 187, 120, 0.4);
+}
+
+.printButton:hover {
+  background: #cbd5e0;
+  transform: translateY(-2px);
+}
+
+/* Main Content */
+.main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Profile Card */
+.profileCard {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Profile Header */
+.profileHeader {
+  position: relative;
+  padding: 60px 40px 40px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow: hidden;
+}
+
+.backgroundPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.profileImageWrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 24px;
+  z-index: 1;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid white;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.verifiedBadge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  border-radius: 50%;
+  border: 4px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.5);
+}
+
+.verifiedBadge svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.profileInfo {
+  position: relative;
+  z-index: 1;
+}
+
+.studentName {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rollNumber {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 20px;
+  border-radius: 20px;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+}
+
+.departmentBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #667eea;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.departmentBadge svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Details Container */
+.detailsContainer {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Section */
+.section {
+  background: #f7fafc;
+  padding: 28px;
+  border-radius: 16px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.section:hover {
+  border-color: #cbd5e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.sectionTitle svg {
+  width: 24px;
+  height: 24px;
+  color: #667eea;
+}
+
+/* Info Grid */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.infoItem:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+.infoLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.infoLabel svg {
+  width: 16px;
+  height: 16px;
+  color: #667eea;
+}
+
+.infoValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
+  word-break: break-word;
+}
+
+/* Gender Badge */
+.genderBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.genderBadge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Loading State */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Error State */
+.errorContainer {
+  background: white;
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 80px auto;
+}
+
+.errorContainer svg {
+  width: 80px;
+  height: 80px;
+  color: #f56565;
+  margin-bottom: 24px;
+}
+
+.errorContainer h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 12px;
+}
+
+.errorContainer p {
+  font-size: 16px;
+  color: #718096;
+  margin-bottom: 32px;
+}
+
+.retryButton {
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.retryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .headerTitle {
+    order: -1;
+    width: 100%;
+  }
+
+  .headerTitle h1 {
+    font-size: 22px;
+  }
+
+  .headerActions {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .editButton,
+  .printButton {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .backButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .main {
+    padding: 30px 16px;
+  }
+
+  .profileHeader {
+    padding: 40px 24px 32px;
+  }
+
+  .profileImageWrapper {
+    width: 150px;
+    height: 150px;
+  }
+
+  .studentName {
+    font-size: 28px;
+  }
+
+  .detailsContainer {
+    padding: 28px 20px;
+    gap: 24px;
+  }
+
+  .section {
+    padding: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileHeader {
+    padding: 32px 20px 24px;
+  }
+
+  .profileImageWrapper {
+    width: 130px;
+    height: 130px;
+  }
+
+  .verifiedBadge {
+    width: 36px;
+    height: 36px;
+    border-width: 3px;
+  }
+
+  .verifiedBadge svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .studentName {
+    font-size: 24px;
+  }
+
+  .rollNumber {
+    font-size: 14px;
+  }
+
+  .departmentBadge {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .detailsContainer {
+    padding: 24px 16px;
+    gap: 20px;
+  }
+
+  .section {
+    padding: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .infoItem {
+    padding: 12px;
+  }
+
+  .infoLabel {
+    font-size: 12px;
+  }
+
+  .infoValue {
+    font-size: 14px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .header,
+  .editButton,
+  .printButton {
+    display: none;
+  }
+
+  .container {
+    background: white;
+  }
+
+  .profileCard {
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+  }
+
+  .section {
+    page-break-inside: avoid;
+  }
+}

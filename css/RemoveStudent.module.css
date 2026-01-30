@@ -1,0 +1,676 @@
+/* Container */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.header {
+  background: white;
+  padding: 20px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid #667eea;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.backButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.backButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.headerTitle {
+  text-align: center;
+  flex: 1;
+}
+
+.headerTitle h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+
+.headerTitle p {
+  font-size: 14px;
+  color: #718096;
+}
+
+.studentCount {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.studentCount span {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.studentCount small {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Filters Section */
+.filtersSection {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 40px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.searchBar {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchBar svg {
+  position: absolute;
+  left: 16px;
+  width: 20px;
+  height: 20px;
+  color: #718096;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+  color: #2d3748;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #a0aec0;
+}
+
+.searchInput:focus {
+  background: white;
+  border-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.departmentFilter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 250px;
+}
+
+.departmentFilter svg {
+  position: absolute;
+  left: 16px;
+  width: 20px;
+  height: 20px;
+  color: #718096;
+  pointer-events: none;
+}
+
+.filterSelect {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+  color: #2d3748;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23718096'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+.filterSelect:focus {
+  background-color: white;
+  border-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Content */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px 40px;
+}
+
+/* Loading State */
+.loadingContainer {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Error State */
+.errorContainer {
+  background: white;
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.errorContainer svg {
+  width: 80px;
+  height: 80px;
+  color: #f56565;
+  margin-bottom: 24px;
+}
+
+.errorContainer h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 12px;
+}
+
+.errorContainer p {
+  font-size: 16px;
+  color: #718096;
+  margin-bottom: 32px;
+}
+
+.retryButton {
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.retryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+}
+
+/* Empty State */
+.emptyState {
+  background: white;
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.emptyState svg {
+  width: 80px;
+  height: 80px;
+  color: #cbd5e0;
+  margin-bottom: 24px;
+}
+
+.emptyState h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 12px;
+}
+
+.emptyState p {
+  font-size: 16px;
+  color: #718096;
+}
+
+/* Students Grid */
+.studentsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Student Card */
+.studentCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideUp 0.5s ease-out backwards;
+  position: relative;
+}
+
+/* Delete Button */
+.deleteButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(245, 101, 101, 0.4);
+  opacity: 0;
+}
+
+.deleteButton svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+.studentCard:hover .deleteButton {
+  opacity: 1;
+}
+
+.deleteButton:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(245, 101, 101, 0.6);
+}
+
+.deleteButton:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.deleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Telegram-style Delete Animation */
+.studentCard.deleting {
+  animation: deleteAnimation 0.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes deleteAnimation {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.9) translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7) translateY(-20px);
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.studentCard:nth-child(1) { animation-delay: 0.05s; }
+.studentCard:nth-child(2) { animation-delay: 0.1s; }
+.studentCard:nth-child(3) { animation-delay: 0.15s; }
+.studentCard:nth-child(4) { animation-delay: 0.2s; }
+.studentCard:nth-child(5) { animation-delay: 0.25s; }
+.studentCard:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.studentCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Header */
+.cardHeader {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 32px 24px 80px;
+  position: relative;
+}
+
+.profilePicWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.profilePic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.statusBadge {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  border-radius: 50%;
+  border: 3px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+}
+
+.statusBadge svg {
+  width: 16px;
+  height: 16px;
+  color: white;
+}
+
+/* Card Body */
+.cardBody {
+  padding: 24px 24px 20px;
+  text-align: center;
+}
+
+.studentName {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.rollNumber {
+  font-size: 14px;
+  color: #718096;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding: 6px 16px;
+  background: #f7fafc;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.studentDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #f7fafc;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.detailItem svg {
+  width: 18px;
+  height: 18px;
+  color: #667eea;
+  flex-shrink: 0;
+}
+
+.departmentBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.departmentBadge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Card Footer */
+.cardFooter {
+  padding: 0 24px 24px;
+}
+
+.knowMoreBtn {
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.knowMoreBtn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.knowMoreBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.knowMoreBtn:hover svg {
+  transform: translateX(4px);
+}
+
+.knowMoreBtn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .studentsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .headerTitle h1 {
+    font-size: 22px;
+  }
+
+  .studentCount {
+    order: 3;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .studentCount span {
+    font-size: 20px;
+  }
+
+  .filtersSection {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .searchBar,
+  .departmentFilter {
+    min-width: 100%;
+  }
+
+  .main {
+    padding: 0 20px 40px;
+  }
+
+  .studentsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .headerTitle {
+    order: -1;
+  }
+
+  .backButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filtersSection {
+    padding: 16px;
+  }
+
+  .main {
+    padding: 0 16px 32px;
+  }
+
+  .cardHeader {
+    padding: 24px 20px 70px;
+  }
+
+  .profilePicWrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .cardBody {
+    padding: 20px 20px 16px;
+  }
+
+  .studentName {
+    font-size: 20px;
+  }
+
+  .cardFooter {
+    padding: 0 20px 20px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .header,
+  .filtersSection {
+    display: none;
+  }
+
+  .studentsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .studentCard {
+    page-break-inside: avoid;
+  }
+}

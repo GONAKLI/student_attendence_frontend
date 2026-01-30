@@ -24,7 +24,7 @@ function AdminAuth() {
       </div>
 
       <div className="auth-form">
-        {type === "signin" ? <Signin_admin /> : <Signup_admin />}
+        {type === "signin" ? <Signin_admin /> : <Signup_admin setType={setType}/>}
       </div>
     </div>
   );

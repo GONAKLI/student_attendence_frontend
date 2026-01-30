@@ -13,6 +13,7 @@ function Signup_admin({ setType }) {
     mobile: "",
     password: "",
     confirm_password: "",
+    gender: "", // ✅ new field
   });
   const [response, setResponse] = useState(null);
 
@@ -28,15 +29,17 @@ function Signup_admin({ setType }) {
     }
 
     try {
-      const res = await fetch("https://backend.gonakli.com/admin_signup", {
+      const res = await fetch("http://localhost:5005/admin_signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
         credentials: "include",
       });
       const data = await res.json();
+      console.log(data);
+      
 
-      if (data.request === "fullfilled") {
+      if (res.status === 200) {
         setResponse({ reason: "Signup successful! Please sign in." });
         setTimeout(() => setType("signin"), 1500);
       } else {
@@ -91,7 +94,7 @@ function Signup_admin({ setType }) {
             <FaPhoneAlt /> Mobile Number
           </label>
           <input
-            type="tel"
+            type="number"
             id="mobile"
             className="signup-input"
             name="mobile"
@@ -99,6 +102,44 @@ function Signup_admin({ setType }) {
             onChange={handleChange}
             required
           />
+        </div>
+
+        {/* ✅ Gender Radio Buttons */}
+        <div className="signup-group">
+          <label className="signup-label">Select Gender</label>
+          <div className="signup-radio">
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                checked={formData.gender === "male"}
+                onChange={handleChange}
+                required
+              />
+              Male
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                checked={formData.gender === "female"}
+                onChange={handleChange}
+              />
+              Female
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="other"
+                checked={formData.gender === "other"}
+                onChange={handleChange}
+              />
+              Other
+            </label>
+          </div>
         </div>
 
         <div className="signup-group">

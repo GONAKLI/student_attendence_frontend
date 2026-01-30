@@ -7,11 +7,16 @@ import {
   Grid,
   Paper,
   Avatar,
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormLabel,
+  FormControlLabel,
 } from "@mui/material";
 import "../../css/addteacher.css";
 
 function AddTeacherForm() {
-  const[error, seterror] =useState("");
+  const [error, seterror] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -19,7 +24,9 @@ function AddTeacherForm() {
     dob: "",
     mobile: "",
     qualification: "",
+    department: "",
     profilePic: null,
+    gender: "", // ✅ new field
   });
 
   const handleChange = (e) => {
@@ -33,30 +40,42 @@ function AddTeacherForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("https://backend.gonakli.com/admin/add-teacher", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-      credentials: "include",
-    }).then((res)=>{
-      if(res.status === 200){
-        alert('teacher added successfully');
-        setFormData({
-    name: "",
-    address: "",
-    email: "",
-    dob: "",
-    mobile: "",
-    qualification: "",
-    profilePic: null,
-  });
 
-      }else{
- seterror("unable to save teacher details..... try again");
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("address", formData.address);
+    data.append("email", formData.email);
+    data.append("dob", formData.dob);
+    data.append("mobile", formData.mobile);
+    data.append("qualification", formData.qualification);
+    data.append("department", formData.department);
+    data.append("gender", formData.gender);
+    data.append("profilePic", formData.profilePic); // file field
+
+    fetch("http://localhost:5005/admin/add-teacher", {
+      method: "POST",
+      body: data, // no JSON.stringify
+      credentials: "include",
+    }).then((res) => {
+      if (res.status === 200) {
+        alert("teacher added successfully");
+        setFormData({
+          name: "",
+          address: "",
+          email: "",
+          dob: "",
+          mobile: "",
+          department: "",
+          qualification: "",
+          profilePic: null,
+          gender: "",
+        });
+      } else {
+        seterror("unable to save teacher details..... try again");
       }
-    })
-    
+    });
   };
+
 
   return (
     <Container maxWidth="sm" style={{ marginTop: "40px" }}>
@@ -64,9 +83,14 @@ function AddTeacherForm() {
         <Typography variant="h4" align="center" gutterBottom>
           ➕ Add Teacher
         </Typography>
-        {error &&  <Typography variant="h4" align="center" gutterBottom> {error} </Typography>}
-        <form onSubmit={handleSubmit}>
+        {error && (
+          <Typography variant="h4" align="center" gutterBottom>
+            {error}
+          </Typography>
+        )}
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <Grid container spacing={2}>
+            {/* Existing fields */}
             <Grid item xs={12}>
               <TextField
                 fullWidth
@@ -113,7 +137,7 @@ function AddTeacherForm() {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                type="tel"
+                type="number"
                 label="Mobile Number"
                 name="mobile"
                 value={formData.mobile}
@@ -130,6 +154,48 @@ function AddTeacherForm() {
                 onChange={handleChange}
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="department assigned"
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                required
+              />
+            </Grid>
+
+            {/* ✅ Gender Radio Buttons */}
+            <Grid item xs={12}>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">Gender</FormLabel>
+                <RadioGroup
+                  row
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleChange}
+                  required
+                >
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio />}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label="Other"
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+
+            {/* Profile Pic */}
             <Grid item xs={12} style={{ textAlign: "center" }}>
               <input
                 type="file"
@@ -145,6 +211,8 @@ function AddTeacherForm() {
                 />
               )}
             </Grid>
+
+            {/* Submit Button */}
             <Grid item xs={12}>
               <Button
                 type="submit"

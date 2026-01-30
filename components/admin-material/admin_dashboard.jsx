@@ -6,24 +6,22 @@ function AdminDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function checkAuth() {
-      const res = await fetch("https://backend.gonakli.com/admin/dashboard", {
-        credentials: "include",
-      });
+    fetch("http://localhost:5005/admin/", {
+      credentials: "include",
+    }).then((res) => {
       if (res.status === 401) {
-        navigate("/admin");
+      return navigate("/admin");
       }
-    }
-    checkAuth();
-  }, [navigate]);
+    });
+  }, []);
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("https://backend.gonakli.com/admin/logout", {
+      const res = await fetch("http://localhost:5005/admin/logout", {
         method: "POST",
         credentials: "include",
       });
-      if (res.ok ) {
+      if (res.ok) {
         console.log("successfully logout");
         navigate("/admin");
       }

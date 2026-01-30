@@ -24,7 +24,7 @@ function Signin_admin() {
     }
 
     try {
-      const res = await fetch("https://backend.gonakli.com/admin_signin", {
+      const res = await fetch("http://localhost:5005/admin_signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -50,10 +50,10 @@ function Signin_admin() {
 
         <div className="signin-group">
           <label htmlFor="email" className="signin-label">
-            <MdEmail /> Enter E-mail
+            <MdEmail /> Enter E-mail / Mobile Number
           </label>
           <input
-            type="email"
+            type="text"
             id="email"
             className="signin-input"
             name="email"

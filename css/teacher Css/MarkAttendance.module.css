@@ -1,0 +1,641 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container */
+.attendance-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.attendance-header {
+  background: white;
+  padding: 20px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.back-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.header-title {
+  text-align: center;
+  flex: 1;
+}
+
+.header-title h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+
+.header-title p {
+  font-size: 14px;
+  color: #718096;
+}
+
+.progress-indicator {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+/* Main Content */
+.attendance-main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Swipe Section */
+.swipe-section {
+  margin-bottom: 40px;
+}
+
+/* Student Card */
+.student-card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  cursor: grab;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  margin-bottom: 40px;
+}
+
+.student-card:active {
+  cursor: grabbing;
+}
+
+/* Swipe Overlays */
+.card-overlay-left,
+.card-overlay-right {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-overlay-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(245, 101, 101, 0.9) 0%, transparent 100%);
+}
+
+.card-overlay-right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(72, 187, 120, 0.9) 0%, transparent 100%);
+}
+
+.student-card.swipe-left-hint .card-overlay-left,
+.student-card.swipe-right-hint .card-overlay-right {
+  opacity: 1;
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-weight: 700;
+  font-size: 24px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.overlay-content svg {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Student Profile */
+.student-profile-pic {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid #f7fafc;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.student-profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Student Info */
+.student-info {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.student-name {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 20px;
+}
+
+.student-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #4a5568;
+  background: #f7fafc;
+  padding: 12px 20px;
+  border-radius: 12px;
+}
+
+.detail-item svg {
+  width: 20px;
+  height: 20px;
+  color: #667eea;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.action-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-btn svg {
+  width: 32px;
+  height: 32px;
+}
+
+.absent-btn {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  color: white;
+}
+
+.absent-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 12px 28px rgba(245, 101, 101, 0.4);
+}
+
+.present-btn {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+}
+
+.present-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 12px 28px rgba(72, 187, 120, 0.4);
+}
+
+/* Completion Message */
+.completion-message {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.completion-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(72, 187, 120, 0.4);
+}
+
+.completion-icon svg {
+  width: 50px;
+  height: 50px;
+  color: white;
+}
+
+.completion-message h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 12px;
+}
+
+.completion-message p {
+  font-size: 16px;
+  color: #718096;
+}
+
+/* Attendance Summary */
+.attendance-summary {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.attendance-summary h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f7fafc;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.summary-item:hover {
+  background: #edf2f7;
+  transform: translateX(4px);
+}
+
+.summary-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.summary-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.summary-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.summary-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.summary-roll {
+  font-size: 13px;
+  color: #718096;
+}
+
+.summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+.status-badge.present {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+}
+
+.status-badge.absent {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  color: white;
+}
+
+.edit-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.edit-btn svg {
+  width: 18px;
+  height: 18px;
+  color: white;
+}
+
+.edit-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.submit-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(102, 126, 234, 0.5);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Swipe Animations */
+.student-card.left {
+  animation: swipeLeft 0.4s ease-out;
+}
+
+.student-card.right {
+  animation: swipeRight 0.4s ease-out;
+}
+
+@keyframes swipeLeft {
+  to {
+    transform: translateX(-1000px) rotate(-30deg);
+    opacity: 0;
+  }
+}
+
+@keyframes swipeRight {
+  to {
+    transform: translateX(1000px) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .attendance-header {
+    padding: 16px 20px;
+    flex-wrap: wrap;
+  }
+
+  .header-title h1 {
+    font-size: 22px;
+  }
+
+  .header-title p {
+    font-size: 12px;
+  }
+
+  .attendance-main {
+    padding: 30px 16px;
+  }
+
+  .student-card {
+    padding: 30px 24px;
+  }
+
+  .student-profile-pic {
+    width: 160px;
+    height: 160px;
+  }
+
+  .student-name {
+    font-size: 26px;
+  }
+
+  .detail-item {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .action-buttons {
+    gap: 30px;
+  }
+
+  .action-btn {
+    width: 70px;
+    height: 70px;
+  }
+
+  .action-btn svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .attendance-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .header-title {
+    order: -1;
+  }
+
+  .back-button,
+  .progress-indicator {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .student-card {
+    padding: 24px 20px;
+  }
+
+  .student-profile-pic {
+    width: 140px;
+    height: 140px;
+  }
+
+  .student-name {
+    font-size: 24px;
+  }
+
+  .action-buttons {
+    gap: 24px;
+  }
+
+  .action-btn {
+    width: 65px;
+    height: 65px;
+    font-size: 11px;
+  }
+
+  .attendance-summary {
+    padding: 24px 20px;
+  }
+
+  .summary-item {
+    padding: 12px;
+  }
+
+  .summary-avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .summary-name {
+    font-size: 14px;
+  }
+
+  .summary-roll {
+    font-size: 12px;
+  }
+
+  .overlay-content {
+    font-size: 20px;
+  }
+
+  .overlay-content svg {
+    width: 50px;
+    height: 50px;
+  }
+}

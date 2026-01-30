@@ -13,6 +13,10 @@ import AdminAuth from "../components/admin-material/admin_auth.jsx";
 import ViewTeacher from "../components/admin-material/view_teacher.jsx";
 import RemoveTeacher from "../components/admin-material/remove_teacher.jsx";
 
+import TeacherSignIn from "../components/teacher-components/teacher-signin.jsx";
+import TeacherDashboard from "../components/teacher-components/teacher_dashboard.jsx";
+import MarkAttendance from "../components/teacher-components/Mark_Attendance.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +42,19 @@ const router = createBrowserRouter([
 
       { path: "remove-teacher", element: <RemoveTeacher /> },
     ],
+  },
+  {
+    path: "/teacher",
+    element: <TeacherSignIn />,
+  },
+  ,
+  {
+    path: "/teacher/dashboard",
+    element: <TeacherDashboard />,
+  },
+  {
+    path: "/teacher/dashboard/mark-attendance",
+    element: <MarkAttendance />,
   },
 ]);
 
